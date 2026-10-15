@@ -6,212 +6,320 @@
 <title>Atelier Peinture Exemple — peintre en bâtiment et revêtements de sols (site d'exemple)</title>
 <meta name="description" content="Site d'exemple : artisan fictif. Peinture intérieure et extérieure, revêtements de sols. Devis gratuit sur place.">
 <meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    color-scheme:light dark;
-    --bg:#f6f3ec; --card:#ffffff; --ink:#1d2430; --muted:#5d6675; --line:#e3ddd0;
-    --brand:#1f4e79; --brand-ink:#ffffff; --accent:#d98a2b; --accent-soft:#fbe9d3;
-    --radius:16px; --shadow:0 6px 24px rgba(29,36,48,.08);
-  }
-  @media (prefers-color-scheme:dark){
-    :root{ --bg:#15181d; --card:#1e2229; --ink:#f1efe9; --muted:#aab2bf; --line:#2d333c;
-      --brand:#3b7bbf; --brand-ink:#ffffff; --accent:#e9a24a; --accent-soft:#3a2c17; --shadow:0 6px 24px rgba(0,0,0,.35); }
+    color-scheme:light;
+    --sable:#f3eee6; --sable-2:#e9e2d6; --blanc:#ffffff;
+    --anthracite:#24282d; --gris:#5f6670; --ligne:#e3dcd0;
+    --bleu:#234a7c; --bleu-fonce:#183659; --cuivre:#c97c3a; --cuivre-clair:#f5e6d6;
+    --r:14px;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;font-size:17px}
-  a{color:var(--brand)}
-  .exemple{position:sticky;top:0;z-index:20;background:var(--accent);color:#1d2430;text-align:center;font-size:14px;font-weight:600;padding:7px 12px}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 18px}
-  header.top{background:var(--card);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
-  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
-  .logo .mark{width:40px;height:40px;border-radius:10px;background:var(--brand);display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px}
-  .logo b{display:block;font-size:17px;line-height:1.1}
-  .logo span{display:block;font-size:13px;color:var(--muted)}
-  nav.links{display:flex;gap:18px;font-size:15px}
-  nav.links a{text-decoration:none;color:var(--ink)}
-  .btn{display:inline-block;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:600;font-size:16px;border:2px solid transparent}
-  .btn.primary{background:var(--brand);color:var(--brand-ink)}
-  .btn.ghost{border-color:var(--brand);color:var(--brand);background:transparent}
-  .btn.tel{background:var(--accent);color:#1d2430}
-  .hero{padding:48px 0 36px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
-  .hero h1{font-size:38px;line-height:1.12;margin:0 0 14px;letter-spacing:-.01em}
-  .hero p.lead{font-size:19px;color:var(--muted);margin:0 0 22px}
+  html,body{overflow-x:hidden}
+  body{margin:0;background:var(--blanc);color:var(--anthracite);font-family:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55;font-size:17px;font-weight:500}
+  a{color:var(--bleu)}
+  h1,h2,h3{font-weight:800;margin:0;letter-spacing:-.015em;line-height:1.1}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  .exemple{background:#eef1f5;color:#3c4652;text-align:center;font-size:13.5px;font-weight:700;padding:7px 12px}
+
+  /* en-tête */
+  header.top{background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--ligne);position:sticky;top:0;z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:14px;padding-bottom:14px}
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--anthracite)}
+  .brand .logo{width:54px;height:54px;border-radius:12px;background:var(--anthracite);display:grid;place-items:center;flex:none;color:#fff;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;text-align:center;line-height:1.15}
+  .brand b{display:block;font-size:19px;font-weight:800;line-height:1.1;letter-spacing:-.01em}
+  .brand > span > span{display:block;font-size:13px;color:var(--gris);font-weight:600;margin-top:3px}
+  nav.links{display:flex;gap:26px;font-size:15px;font-weight:700}
+  nav.links a{text-decoration:none;color:var(--anthracite);padding:6px 0;border-bottom:2px solid transparent}
+  nav.links a:hover{border-color:var(--cuivre)}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:999px;text-decoration:none;font-weight:800;font-size:15.5px;border:2px solid transparent;transition:transform .15s,background .15s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.primary{background:var(--bleu);color:#fff}
+  .btn.primary:hover{background:var(--bleu-fonce)}
+  .btn.cuivre{background:var(--cuivre);color:#fff}
+  .btn.ghost{border-color:var(--anthracite);color:var(--anthracite);background:transparent}
+  .btn.ghost.light{border-color:#fff;color:#fff}
+  .btn svg{width:18px;height:18px}
+
+  /* héros : un mur enduit, une bande de peinture fraîche */
+  .hero{position:relative;background:var(--sable);overflow:hidden}
+  .hero .mur{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:70px;padding-bottom:70px}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--cuivre);margin-bottom:22px}
+  .eyebrow::before{content:"";width:34px;height:3px;background:var(--cuivre);border-radius:2px}
+  .bande{position:relative;display:inline-block;padding:18px 30px 20px 26px;margin-left:-8px}
+  .bande svg.trait{position:absolute;inset:-14px -22px -14px -22px;width:calc(100% + 44px);height:calc(100% + 28px);z-index:0}
+  .bande h1{position:relative;z-index:1;color:#fff;font-size:44px;line-height:1.05}
+  .hero .sousTitre{font-size:30px;font-weight:800;color:var(--anthracite);margin:18px 0 0;line-height:1.15;letter-spacing:-.015em}
+  .hero p.lead{font-size:18px;color:var(--gris);margin:16px 0 28px;max-width:520px}
   .cta{display:flex;flex-wrap:wrap;gap:12px}
-  .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-  .badge{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:14px}
-  .photo{position:relative;border-radius:var(--radius);overflow:hidden;background:linear-gradient(135deg,#355d8a,#1f4e79 55%,#d98a2b);min-height:260px;display:grid;place-items:center;color:#fff;text-align:center;box-shadow:var(--shadow)}
-  .photo .lbl{background:rgba(0,0,0,.35);padding:10px 14px;border-radius:12px;font-size:15px;backdrop-filter:blur(2px)}
-  .photo svg{width:46px;height:46px;opacity:.9;margin-bottom:8px}
-  section{padding:40px 0}
-  h2{font-size:27px;margin:0 0 6px;letter-spacing:-.01em}
-  .sub{color:var(--muted);margin:0 0 22px;font-size:16px}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
-  .card h3{margin:0 0 8px;font-size:18px}
-  .card p{margin:0;color:var(--muted);font-size:15px}
-  .ico{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;margin-bottom:12px}
-  .ico svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-  .note{background:var(--accent-soft);border-radius:12px;padding:14px 16px;margin-top:18px;font-size:16px}
-  .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-  .gal .ph{aspect-ratio:4/3;border-radius:14px;display:grid;place-items:center;text-align:center;color:#fff;font-size:14px;padding:10px;
-    background:linear-gradient(160deg,#5a7fa6,#2b4f78)}
-  .gal .ph:nth-child(2){background:linear-gradient(160deg,#c48a3f,#8a5a1f)}
-  .gal .ph:nth-child(3){background:linear-gradient(160deg,#6f8f6a,#3f5d3b)}
-  .gal .ph:nth-child(4){background:linear-gradient(160deg,#8c7aa6,#4e3f6b)}
-  .gal svg{width:30px;height:30px;display:block;margin:0 auto 6px;opacity:.9}
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
-  .step::before{counter-increment:s;content:counter(s);display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--brand);color:#fff;font-weight:700;margin-bottom:10px}
-  .step b{display:block;font-size:17px;margin-bottom:4px}
-  .step p{margin:0;color:var(--muted);font-size:15px}
-  .zone{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
-  .zone ul{columns:2;margin:10px 0 0;padding-left:20px;color:var(--muted)}
-  .contact{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .contact .big{font-size:26px;font-weight:700;text-decoration:none;color:var(--ink);display:block;margin:4px 0 10px}
-  .contact dl{margin:0;font-size:15px}
-  .contact dt{color:var(--muted);margin-top:10px;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+  /* fiche tenue par un ruban de masquage */
+  .fiche{position:relative;background:#fff;border-radius:var(--r);padding:26px 26px 22px;box-shadow:0 24px 50px rgba(36,40,45,.16);transform:rotate(-1deg)}
+  .fiche::before{content:"";position:absolute;top:-14px;left:50%;width:150px;height:30px;margin-left:-75px;background:rgba(236,220,190,.9);transform:rotate(-2deg);border-radius:2px;box-shadow:0 2px 4px rgba(0,0,0,.08);opacity:.95}
+  .fiche h3{font-size:14px;text-transform:uppercase;letter-spacing:.14em;color:var(--cuivre);margin-bottom:12px}
+  .fiche ul{list-style:none;margin:0;padding:0}
+  .fiche li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--ligne);font-size:15.5px}
+  .fiche li:first-child{border-top:0}
+  .fiche li i{width:26px;height:26px;border-radius:50%;background:var(--cuivre-clair);display:grid;place-items:center;flex:none}
+  .fiche li svg{width:14px;height:14px}
+  .fiche li b{display:block;font-weight:800}
+  .fiche li span{color:var(--gris);font-size:14px}
+
+  section{padding:70px 0}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:30px}
+  h2{font-size:38px}
+  .sub{color:var(--gris);margin:0;font-size:17px;max-width:520px}
+  .num{display:block;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--cuivre);margin-bottom:10px}
+
+  /* prestations : chaque carte porte sa matière */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{background:#fff;border:1px solid var(--ligne);border-radius:var(--r);overflow:hidden;transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(36,40,45,.12)}
+  .card .mat{height:132px;display:block;width:100%}
+  .card .in{padding:20px 22px 22px}
+  .card h3{font-size:20px;margin-bottom:6px}
+  .card p{margin:0;color:var(--gris);font-size:15px}
+  .card .lab{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--bleu);margin-bottom:8px}
+  .note{margin-top:26px;display:flex;gap:16px;align-items:center;padding:18px 22px;background:var(--sable);border-radius:var(--r);font-weight:700;font-size:15.5px}
+  .note svg{width:30px;height:30px;flex:none}
+
+  /* chantiers types */
+  .alt{background:var(--anthracite);color:#fff}
+  .alt h2{color:#fff}.alt .sub{color:#b9bfc7}.alt .num{color:#e2a56f}
+  .types{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .type{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:22px}
+  .type .lab{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e2a56f;margin-bottom:10px}
+  .type h3{font-size:19px;margin-bottom:6px;color:#fff}
+  .type p{margin:0;color:#c6ccd3;font-size:14.5px}
+
+  /* étapes */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:s}
+  .step{position:relative;background:#fff;border:1px solid var(--ligne);border-radius:var(--r);padding:26px 24px 24px}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;top:-16px;left:22px;width:36px;height:36px;border-radius:50%;background:var(--bleu);color:#fff;font-weight:800;display:grid;place-items:center;font-size:16px;box-shadow:0 6px 14px rgba(35,74,124,.3)}
+  .step b{display:block;font-size:19px;font-weight:800;margin:6px 0 6px}
+  .step p{margin:0;color:var(--gris);font-size:15px}
+
+  /* secteur */
+  .zone{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+  .zone .card{padding:24px}
+  .zone ul{columns:2;margin:10px 0 0;padding-left:18px;color:var(--gris);font-weight:600}
+  .zone h3{font-size:21px}
+  .kv{margin:8px 0 0;font-size:15.5px;color:var(--gris)}
+  .kv b{color:var(--anthracite)}
+
+  /* contact */
+  .contact-sec{background:var(--sable);position:relative}
+  .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px}
+  .contact .card{padding:26px}
+  .contact .big{font-size:34px;font-weight:800;text-decoration:none;color:var(--anthracite);display:block;margin:2px 0 12px;letter-spacing:-.01em}
+  .contact dl{margin:0;font-size:15.5px}
+  .contact dt{color:var(--gris);margin-top:12px;font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800}
   .contact dd{margin:0}
-  form label{display:block;font-size:14px;color:var(--muted);margin:10px 0 4px}
-  input,textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:16px}
-  textarea{min-height:110px;resize:vertical}
-  form .btn{margin-top:14px;cursor:pointer;font:inherit}
-  form small{display:block;margin-top:8px;color:var(--muted);font-size:13px}
-  footer{border-top:1px solid var(--line);padding:26px 0 36px;color:var(--muted);font-size:14px}
-  footer .made{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
-  .sr{position:absolute;left:-9999px}
-  @media (max-width:820px){
-    .hero{grid-template-columns:1fr;padding-top:28px}
-    .hero h1{font-size:30px}
+  form label{display:block;font-size:13px;color:var(--gris);margin:12px 0 5px;font-weight:800}
+  input,textarea{width:100%;padding:13px 14px;border:1.5px solid #d7cfc2;border-radius:10px;background:#fff;color:var(--anthracite);font:inherit;font-size:16px}
+  input:focus,textarea:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(35,74,124,.14)}
+  textarea{min-height:120px;resize:vertical}
+  form .btn{margin-top:16px;cursor:pointer;font:inherit}
+  form small{display:block;margin-top:10px;color:var(--gris);font-size:13px}
+
+  footer{background:var(--anthracite);color:#aab1b9;padding:28px 0 34px;font-size:14px}
+  footer .made{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12)}
+  footer a{color:#fff}
+
+  @media (max-width:920px){
+    .hero .wrap{grid-template-columns:1fr;padding-top:44px;padding-bottom:50px}
+    .bande h1{font-size:38px}
+    .hero .sousTitre{font-size:24px}
     nav.links{display:none}
     .grid,.steps{grid-template-columns:1fr 1fr}
-    .gal{grid-template-columns:1fr 1fr}
+    .types{grid-template-columns:1fr 1fr}
     .zone,.contact{grid-template-columns:1fr}
+    .sec-head{flex-direction:column;align-items:flex-start;gap:8px}
+    .fiche{transform:none;margin-top:10px}
   }
-  @media (max-width:520px){
+  @media (max-width:560px){
     body{font-size:16px}
-    .grid,.steps{grid-template-columns:1fr}
-    .nav .btn{padding:10px 14px;font-size:15px;white-space:nowrap}
-    .logo > span > span{display:none}
-    .logo b{font-size:16px}
-    .hero h1{font-size:27px}
+    .grid,.steps,.types{grid-template-columns:1fr}
+    .steps{gap:30px}
+    .nav .btn{padding:9px 12px;font-size:13px;white-space:nowrap;gap:6px}
+    .nav .btn svg{width:15px;height:15px}
+    .brand{flex:1;min-width:0}
+    .brand .logo{width:44px;height:44px}
+    .brand b{font-size:15px}
+    .brand{gap:10px}
+    .brand > span > span{display:none}
+    .bande{padding:14px 18px 16px 16px;margin-left:0}
+    .bande h1{font-size:30px}
+    .hero .sousTitre{font-size:21px}
     .zone ul{columns:1}
+    h2{font-size:30px}
+    section{padding:50px 0}
   }
 </style>
 </head>
 <body>
 
-<div class="exemple">Site d'exemple : artisan fictif, photos de démonstration. Votre site aura votre nom, vos textes et vos photos.</div>
+<div class="exemple">Site d'exemple — artisan fictif. Votre site aura votre nom, votre logo, vos textes et vos coordonnées.</div>
 
 <header class="top">
   <div class="wrap nav">
-    <a class="logo" href="#"><span class="mark">AP</span><span><b>Atelier Peinture Exemple</b><span>Peintre en bâtiment · revêtements de sols</span></span></a>
-    <nav class="links"><a href="#prestations">Prestations</a><a href="#realisations">Réalisations</a><a href="#secteur">Secteur</a><a href="#contact">Contact</a></nav>
-    <a class="btn tel" href="tel:+33600000000">06 00 00 00 00</a>
+    <a class="brand" href="#"><span class="logo">Votre<br>logo</span><span><b>Atelier Peinture Exemple</b><span>Peintre en bâtiment · revêtements de sols</span></span></a>
+    <nav class="links"><a href="#prestations">Prestations</a><a href="#chantiers">Chantiers</a><a href="#secteur">Secteur</a><a href="#contact">Contact</a></nav>
+    <a class="btn cuivre" href="tel:+33600000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>06 00 00 00 00</a>
   </div>
 </header>
 
-<main class="wrap">
+<section class="hero">
+  <!-- texture d'enduit, générée (pas une image) -->
+  <svg class="mur" aria-hidden="true" preserveAspectRatio="none">
+    <defs>
+      <filter id="enduit" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" seed="7" result="n"/>
+        <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.42  0 0 0 0 0.38  0 0 0 0 0.32  0 0 0 0.22 0"/>
+      </filter>
+      <filter id="rouleau" x="-10%" y="-30%" width="120%" height="160%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.035 0.12" numOctaves="2" seed="4" result="t"/>
+        <feDisplacementMap in="SourceGraphic" in2="t" scale="22" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+    <rect width="100%" height="100%" fill="#f3eee6"/>
+    <rect width="100%" height="100%" filter="url(#enduit)"/>
+  </svg>
 
-  <section class="hero">
+  <div class="wrap">
     <div>
-      <h1>Peinture intérieure, extérieure et revêtements de sols</h1>
-      <p class="lead">Artisan peintre à Villebourg (commune d'exemple). Travail soigné, chantier propre, devis gratuit sur place.</p>
+      <span class="eyebrow">Artisan peintre · Villebourg (commune d'exemple)</span>
+      <div class="bande">
+        <svg class="trait" viewBox="0 0 600 160" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="bleu" x1="0" x2="1"><stop offset="0" stop-color="#2a5a95"/><stop offset="1" stop-color="#1b3f6e"/></linearGradient>
+          </defs>
+          <rect x="22" y="18" width="556" height="124" rx="10" fill="url(#bleu)" filter="url(#rouleau)"/>
+          <rect x="30" y="26" width="540" height="6" rx="3" fill="#fff" opacity=".10"/>
+        </svg>
+        <h1>Peinture &amp; revêtements de sols</h1>
+      </div>
+      <p class="sousTitre">Du travail propre, des finitions nettes, des délais tenus.</p>
+      <p class="lead">Intérieur, extérieur, sols : préparation des supports, peinture, pose. Rénovation ou neuf, pour les particuliers et les professionnels. Le devis est gratuit et se fait sur place.</p>
       <div class="cta">
         <a class="btn primary" href="#contact">Demander un devis gratuit</a>
-        <a class="btn ghost" href="#realisations">Voir les réalisations</a>
-      </div>
-      <div class="badges">
-        <span class="badge">Devis gratuit sur place</span>
-        <span class="badge">Réponse sous 48 h</span>
-        <span class="badge">Particuliers et professionnels</span>
+        <a class="btn ghost" href="#prestations">Voir les prestations</a>
       </div>
     </div>
-    <div class="photo">
-      <div class="lbl">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13.5" r="3.5"/></svg>
-        Emplacement pour votre photo principale<br>(vous au travail, ou votre plus beau chantier)
-      </div>
+
+    <div class="fiche">
+      <h3>En bref</h3>
+      <ul>
+        <li><i><svg viewBox="0 0 24 24" fill="none" stroke="#c97c3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i><div><b>Devis gratuit sur place</b><span>Réponse sous 48 h</span></div></li>
+        <li><i><svg viewBox="0 0 24 24" fill="none" stroke="#c97c3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i><div><b>Rayon de 30 km autour de Villebourg</b><span>Communes à adapter</span></div></li>
+        <li><i><svg viewBox="0 0 24 24" fill="none" stroke="#c97c3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i><div><b>Particuliers et professionnels</b><span>Logements, commerces, bureaux</span></div></li>
+        <li><i><svg viewBox="0 0 24 24" fill="none" stroke="#c97c3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></i><div><b>Assurance décennale</b><span>Assureur et n° : à indiquer</span></div></li>
+      </ul>
     </div>
-  </section>
+  </div>
+</section>
+
+<main>
 
   <section id="prestations">
-    <h2>Prestations</h2>
-    <p class="sub">Ce que vous proposez, en clair. Chaque bloc se change en deux minutes.</p>
-    <div class="grid">
-      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 4h12v5H4zM16 6h3v4h-6v10h-2V10a1 1 0 0 1 1-1h4z"/></svg></div>
-        <h3>Peinture intérieure</h3><p>Murs, plafonds, boiseries. Préparation des supports, enduits, finitions mates, veloutées ou satinées.</p></div>
-      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
-        <h3>Peinture extérieure</h3><p>Façades, volets, portails, bardages. Nettoyage, traitement et protection dans la durée.</p></div>
-      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 10h18M3 15h18M9 5v5M15 10v5M9 15v4"/></svg></div>
-        <h3>Revêtements de sols</h3><p>Sol souple (PVC, lino), parquet stratifié, ragréage et préparation du support.</p></div>
-      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9c3 0 3 2 6 2s3-2 6-2 3 2 4 2M4 15c3 0 3 2 6 2s3-2 6-2 3 2 4 2"/></svg></div>
-        <h3>Papier peint et décoration</h3><p>Pose de papier peint et de toile de verre, mise en couleur, conseils sur les teintes.</p></div>
-      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/></svg></div>
-        <h3>Reprise après dégât des eaux</h3><p>Traitement des taches, reprise des murs et plafonds, remise en peinture.</p></div>
-      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14 4l6 6-9 9H5v-6zM12 6l6 6"/></svg></div>
-        <h3>Petits travaux</h3><p>Rebouchage, bandes de plaques de plâtre, retouches, pose de plinthes.</p></div>
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="num">Prestations</span><h2>Ce que nous faisons</h2></div>
+        <p class="sub">Chaque carte porte la matière du métier. Les textes se changent en quelques minutes.</p>
+      </div>
+      <div class="grid">
+        <!-- 1. peinture intérieure : surface peinte, légères traces de rouleau -->
+        <div class="card"><svg class="mat" viewBox="0 0 400 132" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="p1" x1="0" x2="1"><stop offset="0" stop-color="#2d5c96"/><stop offset="1" stop-color="#3a6fb0"/></linearGradient><filter id="f1"><feTurbulence type="fractalNoise" baseFrequency="0.02 0.7" numOctaves="2" seed="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.16 0"/></filter></defs><rect width="400" height="132" fill="url(#p1)"/><rect width="400" height="132" filter="url(#f1)"/></svg>
+          <div class="in"><span class="lab">Intérieur</span><h3>Peinture intérieure</h3><p>Murs, plafonds, boiseries, radiateurs. Préparation des supports, enduits, finitions mates, veloutées ou satinées.</p></div></div>
+        <!-- 2. peinture extérieure : crépi de façade -->
+        <div class="card"><svg class="mat" viewBox="0 0 400 132" preserveAspectRatio="none" aria-hidden="true"><defs><filter id="f2"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="9" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.3  0 0 0 0 0.25  0 0 0 0.5 0"/></filter></defs><rect width="400" height="132" fill="#e2d4bf"/><rect width="400" height="132" filter="url(#f2)"/></svg>
+          <div class="in"><span class="lab">Extérieur</span><h3>Peinture extérieure</h3><p>Façades, volets, portails, bardages. Nettoyage, traitement des supports et protection dans la durée.</p></div></div>
+        <!-- 3. sols : veinage de bois -->
+        <div class="card"><svg class="mat" viewBox="0 0 400 132" preserveAspectRatio="none" aria-hidden="true"><defs><filter id="f3"><feTurbulence type="fractalNoise" baseFrequency="0.004 0.18" numOctaves="3" seed="5" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.28  0 0 0 0 0.12  0 0 0 0.55 0"/></filter></defs><rect width="400" height="132" fill="#c99a63"/><rect width="400" height="132" filter="url(#f3)"/><g stroke="#8a5a2b" stroke-width="2" opacity=".55"><path d="M0 44h400M0 88h400"/><path d="M130 0v44M270 44v44M90 88v44"/></g></svg>
+          <div class="in"><span class="lab">Sols</span><h3>Revêtements de sols</h3><p>Sol souple (PVC, lino), parquet stratifié, ragréage et préparation du support.</p></div></div>
+        <!-- 4. papier peint : motif fin -->
+        <div class="card"><svg class="mat" viewBox="0 0 400 132" preserveAspectRatio="none" aria-hidden="true"><defs><pattern id="pp" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#efe4d2"/><path d="M20 4 L36 20 L20 36 L4 20 Z" fill="none" stroke="#b9a07c" stroke-width="1.4"/><circle cx="20" cy="20" r="3" fill="#b9a07c"/></pattern></defs><rect width="400" height="132" fill="url(#pp)"/></svg>
+          <div class="in"><span class="lab">Décoration</span><h3>Papier peint, toile de verre</h3><p>Pose de papier peint et de toile de verre, mise en couleur, conseil sur les teintes.</p></div></div>
+        <!-- 5. dégât des eaux : plâtre avec auréole -->
+        <div class="card"><svg class="mat" viewBox="0 0 400 132" preserveAspectRatio="none" aria-hidden="true"><defs><filter id="f5"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" seed="11" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0.3  0 0 0 0 0.3  0 0 0 0 0.3  0 0 0 0.25 0"/></filter><radialGradient id="aur" cx="0.7" cy="0.35" r="0.5"><stop offset="0" stop-color="#b89a74" stop-opacity=".55"/><stop offset=".6" stop-color="#b89a74" stop-opacity=".18"/><stop offset="1" stop-color="#b89a74" stop-opacity="0"/></radialGradient></defs><rect width="400" height="132" fill="#eeeae2"/><rect width="400" height="132" filter="url(#f5)"/><ellipse cx="280" cy="48" rx="120" ry="70" fill="url(#aur)"/></svg>
+          <div class="in"><span class="lab">Réparation</span><h3>Reprise après dégât des eaux</h3><p>Traitement des taches et des supports, reprise des murs et plafonds, remise en peinture.</p></div></div>
+        <!-- 6. petits travaux : béton / plaque -->
+        <div class="card"><svg class="mat" viewBox="0 0 400 132" preserveAspectRatio="none" aria-hidden="true"><defs><filter id="f6"><feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="4" seed="3" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0.2  0 0 0 0 0.2  0 0 0 0 0.22  0 0 0 0.35 0"/></filter></defs><rect width="400" height="132" fill="#cfd2d6"/><rect width="400" height="132" filter="url(#f6)"/><path d="M0 66h400" stroke="#ffffff" stroke-width="3" opacity=".5"/><path d="M0 70h400" stroke="#9aa0a8" stroke-width="2" opacity=".5"/></svg>
+          <div class="in"><span class="lab">Finitions</span><h3>Petits travaux</h3><p>Rebouchage, bandes de plaques de plâtre, retouches, pose de plinthes.</p></div></div>
+      </div>
+      <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="#c97c3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 3h3v15H5V6h3z"/><path d="M9 12h6M9 16h6"/></svg>Pas de grille de prix affichée : chaque chantier est différent. Le devis est gratuit, détaillé, et se fait sur place.</div>
     </div>
-    <div class="note">Pas de grille de prix : chaque chantier est différent. Le devis est gratuit et se fait sur place.</div>
   </section>
 
-  <section id="realisations">
-    <h2>Réalisations</h2>
-    <p class="sub">Trois ou quatre photos suffisent pour commencer ; on en ajoute à chaque chantier.</p>
-    <div class="gal">
-      <div class="ph"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/></svg>Photo 1<br>Salon, avant / après</div></div>
-      <div class="ph"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/></svg>Photo 2<br>Façade repeinte</div></div>
-      <div class="ph"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/></svg>Photo 3<br>Sol stratifié posé</div></div>
-      <div class="ph"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/></svg>Photo 4<br>Chambre d'enfant</div></div>
+  <section id="chantiers" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="num">Chantiers</span><h2>Ce que nous faisons le plus souvent</h2></div>
+        <p class="sub">Les photos de vos chantiers viendront ici, quand vous en aurez. En attendant, les cas typiques.</p>
+      </div>
+      <div class="types">
+        <div class="type"><span class="lab">Rénovation</span><h3>Appartement ou maison</h3><p>Remise en peinture complète, plafonds et murs, reprise des fissures, nouveau sol.</p></div>
+        <div class="type"><span class="lab">Neuf</span><h3>Construction neuve</h3><p>Peinture de finition après plâtrerie, pose des sols avant la livraison.</p></div>
+        <div class="type"><span class="lab">Professionnels</span><h3>Commerces et bureaux</h3><p>Intervention en dehors des heures d'ouverture, chantier propre et rapide.</p></div>
+        <div class="type"><span class="lab">Extérieur</span><h3>Façades et menuiseries</h3><p>Ravalement en peinture, volets, portails, bardages bois.</p></div>
+      </div>
     </div>
   </section>
 
   <section id="comment">
-    <h2>Comment ça se passe</h2>
-    <p class="sub">Simple et sans surprise.</p>
-    <div class="steps">
-      <div class="step"><b>Vous appelez ou vous écrivez</b><p>Par téléphone, par e-mail ou avec le formulaire en bas de page.</p></div>
-      <div class="step"><b>Visite sur place, devis gratuit</b><p>On regarde ensemble le chantier ; vous recevez un devis clair sous 48 h.</p></div>
-      <div class="step"><b>Chantier daté, propre, fini dans les temps</b><p>Sols et meubles protégés, nettoyage en fin de journée.</p></div>
-    </div>
-  </section>
-
-  <section id="secteur">
-    <h2>Secteur d'intervention</h2>
-    <div class="zone">
-      <div class="card">
-        <h3>Autour de Villebourg, dans un rayon de 30 km</h3>
-        <p>Communes d'exemple, à remplacer par les vôtres :</p>
-        <ul><li>Villebourg</li><li>Saint-Exemple</li><li>Les Ormeaux</li><li>Montfleury</li><li>Beaulieu-la-Rivière</li><li>Pont-Neuf</li></ul>
-      </div>
-      <div class="card">
-        <h3>Horaires</h3>
-        <p>Lundi au vendredi : 8 h – 18 h<br>Samedi : sur rendez-vous<br>Urgences dégât des eaux : appelez, on voit ce qui est possible.</p>
+    <div class="wrap">
+      <div class="sec-head"><div><span class="num">Méthode</span><h2>Comment ça se passe</h2></div><p class="sub">Simple et sans surprise, du premier appel à la fin du chantier.</p></div>
+      <div class="steps">
+        <div class="step"><b>Vous appelez ou vous écrivez</b><p>Par téléphone, par e-mail ou avec le formulaire en bas de page. Réponse sous 48 h.</p></div>
+        <div class="step"><b>Visite sur place, devis gratuit</b><p>Le chantier est vu ensemble ; vous recevez un devis détaillé, poste par poste.</p></div>
+        <div class="step"><b>Chantier daté, propre, fini dans les temps</b><p>Dates convenues, sols et meubles protégés, nettoyage en fin de chantier.</p></div>
       </div>
     </div>
   </section>
 
-  <section id="contact">
-    <h2>Contact et devis gratuit</h2>
-    <p class="sub">Un appel ou un message, et on fixe la visite.</p>
-    <div class="contact">
-      <div class="card">
-        <a class="big" href="tel:+33600000000">06 00 00 00 00</a>
-        <dl>
-          <dt>E-mail</dt><dd><a href="mailto:contact@exemple.fr">contact@exemple.fr</a></dd>
-          <dt>Adresse</dt><dd>12 rue de l'Exemple, 00000 Villebourg</dd>
-          <dt>Entreprise</dt><dd>Atelier Peinture Exemple — entreprise individuelle (fictive)<br>SIREN 000 000 000 (exemple)</dd>
-        </dl>
+  <section id="secteur" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="num">Secteur</span><h2>Où nous intervenons</h2></div></div>
+      <div class="zone">
+        <div class="card">
+          <h3>Autour de Villebourg, dans un rayon de 30 km</h3>
+          <p class="kv">Communes d'exemple, à remplacer par les vôtres :</p>
+          <ul><li>Villebourg</li><li>Saint-Exemple</li><li>Les Ormeaux</li><li>Montfleury</li><li>Beaulieu-la-Rivière</li><li>Pont-Neuf</li></ul>
+        </div>
+        <div class="card">
+          <h3>Horaires</h3>
+          <p class="kv"><b>Lundi au vendredi :</b> 8 h – 18 h<br><b>Samedi :</b> sur rendez-vous<br><b>Urgence dégât des eaux :</b> appelez, on voit ce qui est possible.</p>
+        </div>
       </div>
-      <div class="card">
-        <form onsubmit="return envoyer(event)">
-          <label for="nom">Votre nom</label><input id="nom" name="nom" autocomplete="name" placeholder="Prénom et nom">
-          <label for="tel">Votre téléphone</label><input id="tel" name="tel" type="tel" autocomplete="tel" placeholder="06 …">
-          <label for="msg">Votre projet</label><textarea id="msg" name="msg" placeholder="Ex. : repeindre un salon de 25 m² et poser un sol stratifié"></textarea>
-          <button class="btn primary" type="submit">Envoyer ma demande</button>
-          <small>Le message part depuis votre messagerie, directement à l'artisan. Aucune donnée n'est conservée sur ce site.</small>
-        </form>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-sec">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="num">Contact</span><h2>Parlons de votre chantier</h2></div><p class="sub">Un appel ou un message, et la visite est fixée.</p></div>
+      <div class="contact">
+        <div class="card">
+          <a class="big" href="tel:+33600000000">06 00 00 00 00</a>
+          <dl>
+            <dt>E-mail</dt><dd><a href="mailto:contact@exemple.fr">contact@exemple.fr</a></dd>
+            <dt>Adresse</dt><dd>12 rue de l'Exemple, 00000 Villebourg</dd>
+            <dt>Entreprise</dt><dd>Atelier Peinture Exemple — entreprise individuelle (fictive)<br>SIREN 000 000 000 (exemple) · Assurance décennale : à indiquer</dd>
+          </dl>
+        </div>
+        <div class="card">
+          <form onsubmit="return envoyer(event)">
+            <label for="nom">Votre nom</label><input id="nom" name="nom" autocomplete="name" placeholder="Prénom et nom">
+            <label for="tel">Votre téléphone</label><input id="tel" name="tel" type="tel" autocomplete="tel" placeholder="06 …">
+            <label for="msg">Votre projet</label><textarea id="msg" name="msg" placeholder="Ex. : repeindre un salon de 25 m² et poser un sol stratifié"></textarea>
+            <button class="btn primary" type="submit">Envoyer ma demande</button>
+            <small>Le message part depuis votre messagerie, directement à l'artisan. Aucune donnée n'est conservée sur ce site.</small>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -220,7 +328,7 @@
 
 <footer>
   <div class="wrap">
-    <div>© Atelier Peinture Exemple — artisan fictif, site de démonstration. Mentions légales : à compléter avec les vôtres (nom, SIREN, adresse, hébergeur).</div>
+    <div>© Atelier Peinture Exemple — artisan fictif, site de démonstration. Mentions légales : à compléter (nom, SIREN, adresse, assurance, hébergeur).</div>
     <div class="made">Site d'exemple réalisé par Franck Bigand — EI, Verlin (Yonne). Un site comme celui-ci : 290 €, une seule fois, sans abonnement ; vous ne payez qu'après l'avoir vu terminé.</div>
   </div>
 </footer>
